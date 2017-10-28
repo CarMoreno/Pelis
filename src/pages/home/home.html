@@ -1,17 +1,30 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>Películas</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+  <h2>Películas</h2>
+  <p>Busca películas por nombre. <small>Ej: Avengers</small></p>
+  <ion-item>
+    <ion-label color="primary" stacked>Buscador <ion-icon name="search"></ion-icon></ion-label>
+    <ion-input type="text" (input)="ejecutarBusquedaPeli($event, searchKey)"></ion-input>
+  </ion-item><br>
+  <ion-list *ngIf="misPelis?.length > 0">
+    <!--ion-item>
+      <ion-avatar item-start>
+          <img src="https://lorempixel.com/70/70">
+      </ion-avatar>
+      <h2>Cher</h2>
+      <p>Ugh. As if.</p>
+    </ion-item-->
+    <ion-item *ngFor="let peli of misPelis" (click)="mostrarDetalle($event, peli)">
+      <ion-avatar item-left>
+        <img src="https://image.tmdb.org/t/p/w92{{peli.poster_path}}"/>
+      </ion-avatar>
+      <h2>{{peli.original_title}}</h2>
+      <p class="item-description">{{peli.overview}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

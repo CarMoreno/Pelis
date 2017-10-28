@@ -1,17 +1,33 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Contact
+      Series de Tv
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+<ion-content padding>
+<h2>Series de Tv</h2>
+<p>Busca Series de Tv por nombre. <small>Ej: Suits</small></p>
+  <ion-item>
+    <ion-label color="primary" stacked>Buscador <ion-icon name="search"></ion-icon></ion-label>
+    <ion-input type="text" (input)="ejecutarBusquedaSerieTV($event, searchKey)"></ion-input>
+  </ion-item><br>
+  <ion-list *ngIf="misSeries?.length > 0">
+    <!--ion-item>
+      <ion-avatar item-start>
+          <img src="https://lorempixel.com/70/70">
+      </ion-avatar>
+      <h2>Cher</h2>
+      <p>Ugh. As if.</p>
+    </ion-item-->
+    <ion-item *ngFor="let serie of misSeries" (click)="mostrarDetalle($event, serie)">
+      <ion-avatar item-left>
+        <img src="https://image.tmdb.org/t/p/w92{{serie.poster_path}}"/>
+      </ion-avatar>
+      <h2>{{serie.original_name}}</h2>
+      <p class="item-description">{{serie.overview}}</p>
     </ion-item>
   </ion-list>
 </ion-content>
+
